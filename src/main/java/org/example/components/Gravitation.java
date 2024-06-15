@@ -26,6 +26,8 @@ public class Gravitation extends GameComponent {
 
     @Override
     public void update(float deltaTime) {
+        float a = gravity / mass;
+
         getSource().getTransform().addY(mass * gravity * deltaTime);
     }
 

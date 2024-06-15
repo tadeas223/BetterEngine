@@ -1,6 +1,5 @@
 package org.example.base;
 
-import org.example.KeyInput;
 import org.example.base.execution.Work;
 import org.example.base.execution.WorkType;
 import org.example.base.execution.Worker;
@@ -9,8 +8,6 @@ import org.example.base.graphics.GamePanel;
 import org.example.base.graphics.Renderer;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Engine {
