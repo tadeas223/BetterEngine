@@ -3,6 +3,7 @@ package org.example.base.execution;
 import org.example.base.Engine;
 import org.example.base.GameObject;
 import org.example.base.execution.workables.CreateWork;
+import org.example.base.execution.workables.DestroyWork;
 import org.example.base.execution.workables.UpdateWork;
 
 import java.util.HashMap;
@@ -21,10 +22,11 @@ public class Worker extends Thread {
 
     public Worker() { addWorkables(); }
 
-    public void addWorkables(){
+    private void addWorkables(){
         // TODO: Add new workables here
         workables.put(WorkType.UPDATE, new UpdateWork());
         workables.put(WorkType.CREATE,new CreateWork());
+        workables.put(WorkType.DESTROY,new DestroyWork());
     }
     @Override
     public void run() {
@@ -61,7 +63,7 @@ public class Worker extends Thread {
             addWork(work);
         }
 
-        queue.addAll(bufferQueue.stream().toList());
+        queue.addAll(bufferQueue);
         bufferQueue.clear();
 
         Iterator<Work> iterator = queue.iterator();
@@ -78,6 +80,8 @@ public class Worker extends Thread {
         }
 
         queue.clear();
+
+        Engine.getInstance().renderScene();
     }
 
     //region Get&Set&Add&Remove
