@@ -4,6 +4,8 @@ import org.example.base.GameObject;
 import org.example.base.Vector2;
 import org.example.base.graphics.Renderer;
 import org.example.components.BoxRenderer;
+import org.example.components.Gravitation;
+import org.example.components.MovementController;
 
 import java.awt.*;
 
@@ -20,6 +22,7 @@ public class TestObject extends GameObject {
         getTransform().setSize(new Vector2(50,50));
 
         addComponent(new BoxRenderer(Color.black));
-        addComponent(new TestComponent());
+        addComponent(new MovementController());
+        addComponent(new Gravitation());
     }
 }

@@ -1,5 +1,6 @@
 package org.example.base;
 
+import org.example.KeyInput;
 import org.example.base.execution.Work;
 import org.example.base.execution.WorkType;
 import org.example.base.execution.Worker;
@@ -22,6 +23,7 @@ public class Engine {
     private final HashSet<GameObject> objects = new HashSet<>();
 
     private final Worker worker = new Worker();
+    private final KeyInput keyInput = new KeyInput();
 
     private Engine() {}
 
@@ -29,6 +31,7 @@ public class Engine {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 instance.gameFrame =  new GameFrame();
+                instance.gameFrame.addKeyListener(instance.keyInput);
                 instance.gameFrame.add(instance.gamePanel);
             }
         });
@@ -60,6 +63,10 @@ public class Engine {
     public static void setFps(int fps){
         instance.getWorker().setFps(fps);
     }
+
+    public static KeyInput getKeyInput() {
+        return instance.keyInput;
+    }
     //endregion
 
     //region Get&Set&Add&Remove
@@ -87,9 +94,8 @@ public class Engine {
         return renderers.toArray(Renderer[]::new);
     }
 
-    public void renderScene(){
+    public void renderScene() {
         gamePanel.renderObjects(renderers.toArray(Renderer[]::new));
     }
-
     //endregion
 }

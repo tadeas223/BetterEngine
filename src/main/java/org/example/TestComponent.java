@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.base.Engine;
 import org.example.base.GameComponent;
 import org.example.interfaces.Destroyable;
 
@@ -11,7 +12,7 @@ public class TestComponent extends GameComponent implements Destroyable {
 
     @Override
     public void update(float deltaTime) {
-        getSource().getTransform().setX(getSource().getTransform().getX() + 50 * deltaTime);
+        System.out.println(deltaTime);
     }
 
     @Override
